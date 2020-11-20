@@ -11,6 +11,8 @@ urlpatterns = [
     path('teacher/home', teachers_home_page, name='teachers_home_page'),
     path('logout', logout_user, name='logout_user'),
     path('assigments/<int:pk>', show_students_assigemnt, name='show_assigemnt'),
-    path('add_assigment/<int:pk>', add_assigment, name="add_assigment")
+    path('add_assigment/<int:pk>', add_assigment, name="add_assigment"),
+    path('announcemnet', announcement.as_view(),  name='announcemnet'),
+    # path('show_assigments', show_assigment_of_students, name='show_assigments'),
 
 ]

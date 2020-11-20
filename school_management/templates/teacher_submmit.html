@@ -23,6 +23,15 @@
           <input type="file" id="file" name="file" />
           <br />
           <button class="btn btn-dark">submmit assigment</button>
+          <br />
+          <br />
+          Submiited assigments of {{assigment}}
+          <br />
+          {%for assi in student_ass %} {{assi.student.full_name}} topic :
+          {{assi.assigment.topic}}
+          <a href="{{assi.submitted.url}}" target="_blank">show</a>
+          {% endfor %}
+          <h3></h3>
         </form>
       </h1>
     </div>

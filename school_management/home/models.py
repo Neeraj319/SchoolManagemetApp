@@ -28,6 +28,7 @@ class submmitted_assigmet(models.Model):
     student = models.ForeignKey(student, on_delete=models.CASCADE)
     assigment = models.OneToOneField('Assigment', on_delete=models.DO_NOTHING)
     submitted = models.FileField(upload_to='static/submiited/', max_length=100)
+    subject = models.ForeignKey('Subject', on_delete=models.CASCADE)
 
     def __str__(self):
         return f'{self.student} , | {self.assigment}'
@@ -68,6 +69,10 @@ class Assigment(models.Model):
         return f'{self.name} | {self.garde} | {self.teacher} | {self.subject}'
 
 
-class Principal(models.Model):
-    full_name = models.CharField(max_length=20)
-    name = models.ForeignKey(User, on_delete=models.CASCADE)
+class Announcemnt(models.Model):
+    title = models.CharField(max_length=20)
+    content = models.TextField(blank=True)
+    date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title

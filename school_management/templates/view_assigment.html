@@ -9,17 +9,12 @@
       integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
       crossorigin="anonymous"
     />
-    <title>home</title>
+    <title>Document</title>
   </head>
   <body>
     <div class="container">
-    i am a student
-      <h1>ABC School</h1>
-      welcome {{request.user}}
-      {{request.user.student.full_name}}
-      <a href={% url 'student_profile' students.id %}>your profile</a>
-      <a href="{% url 'announcemnet' %}">announcemnet</a>
-      <a href="/logout">logout</a>
+      {% for ass in show_assigment %} {{ass.student.full_name}}
+      {{ass.student.grade}} {% endfor %}
     </div>
   </body>
 </html>

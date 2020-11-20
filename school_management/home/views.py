@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.views.generic import ListView
-from .models import student, Teacher, Assigment, submmitted_assigmet, Subject, Principal
+from .models import student, Teacher, Assigment, submmitted_assigmet, Subject, Announcemnt
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -105,7 +105,7 @@ def show_students_assigemnt(request, pk, *args):
         imgage = request.FILES.get('file')
         assigment_s = Assigment.objects.get(id=pk)
         img, _ = submmitted_assigmet.objects.get_or_create(
-            student=request.user.student, assigment=assigment_s)
+            student=request.user.student, assigment=assigment_s, subject=assigment_s.subject)
         img.submitted = imgage
         img.save()
 
@@ -123,9 +123,12 @@ def show_students_assigemnt(request, pk, *args):
 def add_assigment(request, pk):
     try:
         give_assigment = Subject.objects.get(pk=pk)
-        print(give_assigment)
+        Show_assigment = submmitted_assigmet.objects.filter(
+            subject=give_assigment)
+
     except:
         return redirect('home')
+    print(give_assigment, Show_assigment)
     if request.method == 'POST':
         file = request.FILES.get('file')
 
@@ -134,7 +137,14 @@ def add_assigment(request, pk):
             topic=name, garde=give_assigment.grade, teacher=request.user.teacher, subject=give_assigment)
         files.name = file
         files.save()
+    print(Show_assigment)
     context = {
-        'assigment': give_assigment
+        'assigment': give_assigment,
+        'student_ass': Show_assigment
     }
     return render(request, 'teacher_submmit.html', context)
+
+
+class announcement(LoginRequiredMixin, ListView):
+    model = Announcemnt
+    template_name = 'announcemnt.html'
