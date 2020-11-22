@@ -9,20 +9,18 @@
       integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
       crossorigin="anonymous"
     />
-    <title>Notice</title>
+    <title>Discussion</title>
   </head>
   <body>
     <div class="container">
-      <div class="jumbotron">
-        <h1 class="display-4">ABC school announcement's</h1>
-      </div>
-      {% for anounce in announcement %}
-      <h1>{{anounce.title}}</h1>
-      <hr />
-      {{anounce.content}} on {{anounce.date_announced}}
-      {{request.user.student.grade}}
-      <hr />
-      {% endfor %}
+      {% if discusiion%} {% for diss in discusiion %}
+      <h4>
+        <a href="{% url 'disscussion_answers'  diss.pk %}"
+          >{{diss.topic}} ({{diss.subject}})</a
+        >
+        <br />
+      </h4>
+      {% endfor %} {%else%} no discussions in your class {%endif%}
     </div>
   </body>
 </html>

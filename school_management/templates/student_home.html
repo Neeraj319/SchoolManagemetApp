@@ -9,7 +9,7 @@
       integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
       crossorigin="anonymous"
     />
-    <title>home</title>
+    <title>student home</title>
   </head>
   <body>
     <div class="container">
@@ -17,8 +17,13 @@
       <h1>ABC School</h1>
       welcome {{request.user}}
       {{request.user.student.full_name}}
-      <a href={% url 'student_profile' students.id %}>your profile</a>
-      <a href="{% url 'announcemnet' %}">announcemnet</a>
+      
+    <br>
+    <div>
+      <a href={% url 'student_profile' students.id %}> <h1>your classroom</a>
+      <br>
+      <a href="{% url 'announcemnet' %}">School's Notice</h1> </a>
+      <br>
       <a href="/logout">logout</a>
     </div>
   </body>

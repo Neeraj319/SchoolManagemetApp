@@ -17,22 +17,32 @@
         give assigment to {{assigment}}
         <br />
         <br />
+        {% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
         <form method="POST" enctype="multipart/form-data">
           {% csrf_token %}
           <input type="text" name="assigment" />
           <input type="file" id="file" name="file" />
+          <input type="datetime-local" name="date_s" />
           <br />
           <button class="btn btn-dark">submmit assigment</button>
           <br />
           <br />
           Submiited assigments of {{assigment}}
+          
           <br />
-          {%for assi in student_ass %} {{assi.student.full_name}} topic :
-          {{assi.assigment.topic}}
-          <a href="{{assi.submitted.url}}" target="_blank">show</a>
-          {% endfor %}
+
           <h3></h3>
         </form>
+        {% if student_ass %} {%for assi in student_ass %}
+        {{assi.student.full_name}} topic : {{assi.assigment.topic}}
+        <a href="{{assi.submitted.url}}" target="_blank">show</a>
+        {% endfor %} {% else %} no one has submitted assigments {% endif %}
       </h1>
     </div>
   </body>

@@ -9,10 +9,18 @@
       integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
       crossorigin="anonymous"
     />
-    <title>Document</title>
+    <title>assigments of {{request.user.student.grade}}</title>
   </head>
   <body>
     <div class="container">
+            {% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+    {% if assigments %}
       {% for assigment in assigments %} {% if assigment.submmitted_assigmet %}
       Already submitted
       <br />
@@ -21,6 +29,10 @@
       <a href="{{ assigment.name.url }}" Download>{{assigment.topic}}</a>
         Download Document </a
       >| {{assigment.teacher}} ( {{assigment.subject}})
+      submitt upto {{assigment.due_date}}
+      {% if  time > assigment.due_date  %}
+       <h2>time over</h2>
+      {% else %}
       <form
         method="POST"
         action="{% url 'show_assigemnt' pk=assigment.id %}"
@@ -32,7 +44,11 @@
         <br />
         <button class="btn btn-dark">uplaod</button>
       </form>
+      {% endif %}
       {% endif %} {% endfor %}
+      {% else %}
+      no asigments to show
+      {% endif %}
     </div>
   </body>
 </html>

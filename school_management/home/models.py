@@ -27,7 +27,8 @@ class student(models.Model):
 class submmitted_assigmet(models.Model):
     student = models.ForeignKey(student, on_delete=models.CASCADE)
     assigment = models.OneToOneField('Assigment', on_delete=models.DO_NOTHING)
-    submitted = models.FileField(upload_to='static/submiited/', max_length=100)
+    submitted = models.FileField(
+        upload_to='media/student_subbmit_assigment', max_length=100)
     subject = models.ForeignKey('Subject', on_delete=models.CASCADE)
 
     def __str__(self):
@@ -59,20 +60,48 @@ class Teacher(models.Model):
 
 
 class Assigment(models.Model):
-    name = models.FileField(upload_to='static/give')
+    name = models.FileField(upload_to='media/techer_give_assigment')
     topic = models.CharField(max_length=20)
     garde = models.ForeignKey(grade, on_delete=models.CASCADE)
     teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
+    due_date = models.DateTimeField()
 
     def __str__(self):
         return f'{self.name} | {self.garde} | {self.teacher} | {self.subject}'
 
 
-class Announcemnt(models.Model):
-    title = models.CharField(max_length=20)
-    content = models.TextField(blank=True)
-    date = models.DateTimeField(auto_now_add=True)
+class Announcement(models.Model):
+    title = models.CharField(max_length=50)
+    content = models.TextField()
+    date_announced = models.DateTimeField(auto_now=True)
+    an_type = (
+        ('Custom', 'Custom'),
+        ('Public', 'Public'),
+    )
+    announcement_type = models.CharField(max_length=10, choices=an_type)
+    class_name = models.ForeignKey(
+        grade, on_delete=models.CASCADE, blank=True, default="1")
 
     def __str__(self):
-        return self.title
+        return str(self.title)
+
+
+class Discussion(models.Model):
+    topic = models.CharField(max_length=50)
+    content = models.TextField()
+    student = models.ForeignKey('student', on_delete=models.CASCADE)
+    subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
+    grade = models.ForeignKey('grade', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.topic} | {self.student.full_name} | {self.subject}'
+
+
+class Discussion_Answer(models.Model):
+    discussion = models.ForeignKey(Discussion, on_delete=models.CASCADE)
+    answer = models.TextField()
+    student = models.ForeignKey('student', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.discussion.topic} | {self.student.full_name}'

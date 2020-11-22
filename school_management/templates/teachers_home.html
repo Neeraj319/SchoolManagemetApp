@@ -16,7 +16,13 @@
     <div class="container">
       <h1>{{request.user}} </h1>
       <a href="/logout">logout</a>
-      <a href={% url 'teachers_profile' teacher.id %}>your profile</a>
+      <a href={% url 'teachers_profile' teacher.id %}>
+      <h1>
+      your profile
+      </h1>
+        </a>
+      <a href="{% url 'announcemnet' %}">show announcemnts</a>
+      </a>
       
     </div>
   </body>

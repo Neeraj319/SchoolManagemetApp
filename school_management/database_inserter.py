@@ -15,6 +15,7 @@ grades = grade.objects.all()
 
 subjects = ["science", "math", "english"]
 
+
 for grade in grades:
     for subject in subjects:
         Subject.objects.create(name=subject, grade=grade)
