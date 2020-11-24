@@ -13,6 +13,8 @@ download django-admin-honeypot with command pip install django-admin-honeypot
 go to the folder and open your terminal and write command py manage.py runserver
 
 to create a superuser type the command in your terminal (py manage.py createsuperuser)
+student : student1 , helloboi123@
+teacher : teacher1 , helloboi123@
 ```
 # Features!
  - create grades (class) of students 
