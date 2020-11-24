@@ -1,14 +1,14 @@
 # School managemet App
 
 ### Installation And Setup
-- download python in your pc
+```download python in your pc
 
-- download django with command pip install Django
+download django with command pip install Django
 
-- download the project or clone the repo in your pc using git
+download the project or clone the repo in your pc using git
 
-- download django-admin-honeypot with command pip install django-admin-honeypot
+download django-admin-honeypot with command pip install django-admin-honeypot
 
-- go to the folder and open your terminal and write command py manage.py runserver
+go to the folder and open your terminal and write command py manage.py runserver
 
-- to create a superuser type the command in your terminal (py manage.py createsuperuser)
+to create a superuser type the command in your terminal (py manage.py createsuperuser)```
