@@ -19,5 +19,5 @@ to create a superuser type the command in your terminal (py manage.py createsupe
  - teacher can give assigment to the students with its due date 
  - create announcement (public or custom in custom you can make a announcemnt to a particular class)
  - students can submmit the assigment within its due date 
- - students can open discussion onn a particular subject and others can answer to it 
+ - students can open discussion on a particular subject and others can answer to it 
  - students and teacher have to login to acess the app 
