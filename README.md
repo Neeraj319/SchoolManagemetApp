@@ -1,7 +1,8 @@
 # School managemet App
 
 ### Installation And Setup
-```download python in your pc
+```
+download python in your pc
 
 download django with command pip install Django
 
