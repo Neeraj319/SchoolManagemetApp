@@ -11,4 +11,5 @@ download django-admin-honeypot with command pip install django-admin-honeypot
 
 go to the folder and open your terminal and write command py manage.py runserver
 
-to create a superuser type the command in your terminal (py manage.py createsuperuser)```
+to create a superuser type the command in your terminal (py manage.py createsuperuser)
+```
